@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: postgres
+  password: postgres
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: journal_microservice_development
+
+test:
+  <<: *default
+  database: journal_microservice_test
+
+production:
+  <<: *default
+  database: journal_microservice_production
+  username: journal_microservice
+  password: <%= ENV["JOURNAL_MICROSERVICE_DATABASE_PASSWORD"] %>
